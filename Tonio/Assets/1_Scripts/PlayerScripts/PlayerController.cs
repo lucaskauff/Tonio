@@ -13,7 +13,7 @@ namespace Tonio
         [Header("My components")]
         [SerializeField] Animator myAnim = default;
         [SerializeField] Rigidbody2D myRb = default;
-        [SerializeField] Collider2D myCol = default;
+        [SerializeField] BoxCollider2D myCol = default;
 
         [Header("Serializable")]
         [SerializeField] float originalMoveSpeed = 1f;
@@ -49,16 +49,10 @@ namespace Tonio
 
         void ResolutionPower()
         {
+            //Conditions for power activation to update ! (get infos from UIManager)
             if (inputManager.powerActivationButton)
             {
-                if (gameManager.resolutionSet)
-                {
-                    gameManager.resolutionSet = false;
-                }
-                else
-                {
-                    gameManager.resolutionSet = true;
-                }
+                gameManager.resolutionSet = !gameManager.resolutionSet;
             }
         }
 
@@ -101,6 +95,18 @@ namespace Tonio
             myAnim.SetFloat("MoveY", moveInput.y);
             myAnim.SetFloat("LastMoveX", lastMove.x);
             myAnim.SetFloat("LastMoveY", lastMove.y);
+        }
+
+        public void TransitionIsDone()
+        {
+            if (gameManager.resolutionSet)
+            {
+                myCol.size *= 2;
+            }
+            else
+            {
+                myCol.size *= 0.5f;
+            }
         }
     }
 }
