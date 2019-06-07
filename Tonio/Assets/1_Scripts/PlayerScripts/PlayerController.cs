@@ -19,8 +19,8 @@ namespace Tonio
         [SerializeField] float originalMoveSpeed = 1f;
         [SerializeField] float resMoveSpeed = 1f;
         [SerializeField, Range(0, 1)] float newSpeedRatio = 1f;
-        [SerializeField] float originalBoxColSize = 1f;
-        [SerializeField] float resBoxColSize = 0.5f;
+        [SerializeField] float newBoxColRatio = 0.5f;
+        [SerializeField] float newBoxColOffset = -0.125f;
 
         //Public
         public bool canMove = true;
@@ -31,11 +31,14 @@ namespace Tonio
         bool isMoving = false;
 
         float activeMoveSpeed;
+        float originalBoxColOffset;
 
         private void Start()
         {
             gameManager = GameManager.Instance;
             inputManager = GameManager.Instance.inputManager;
+
+            originalBoxColOffset = myCol.offset.y;
         }
 
         private void Update()
@@ -101,11 +104,13 @@ namespace Tonio
         {
             if (gameManager.resolutionSet)
             {
-                myCol.size *= 2;
+                myCol.size *= newBoxColRatio;
+                myCol.offset = new Vector2(myCol.offset.x, newBoxColOffset);
             }
             else
             {
-                myCol.size *= 0.5f;
+                myCol.size *= 1 / newBoxColRatio;
+                myCol.offset = new Vector2(myCol.offset.x, originalBoxColOffset);
             }
         }
     }
