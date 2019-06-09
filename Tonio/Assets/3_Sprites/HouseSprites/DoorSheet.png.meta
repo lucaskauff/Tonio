@@ -95,7 +95,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
+        width: 16
         height: 8
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -104,7 +104,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd6ed2a098e14824ea55497b5a63bdfe
+      spriteID: 9d5f34f9bcba1554f85ef4fa19b270cd
       vertices: []
       indices: 
       edges: []
@@ -113,9 +113,9 @@ TextureImporter:
       name: DoorSheet_1
       rect:
         serializedVersion: 2
-        x: 8
+        x: 16
         y: 0
-        width: 8
+        width: 16
         height: 8
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -124,7 +124,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f09d542d5dfb24d47b1a90a5b1af05e4
+      spriteID: b5ca9caad7d25a14a97df07f00cae27b
       vertices: []
       indices: 
       edges: []
@@ -133,49 +133,9 @@ TextureImporter:
       name: DoorSheet_2
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 8
-        height: 8
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fb38d776f852694d83bf932ce596d67
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DoorSheet_3
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 8
-        height: 8
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8a0c0b1b3b54ab4ba7f41c11a18ff3d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DoorSheet_4
-      rect:
-        serializedVersion: 2
         x: 32
         y: 0
-        width: 8
+        width: 16
         height: 8
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -184,27 +144,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f5025f76b4c6384fabcb16fdeddf897
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DoorSheet_5
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 8
-        height: 8
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b49ca46fdcda4734c927c9b771eb64d3
+      spriteID: 802cc99eba932f8438e2d8e761ec768e
       vertices: []
       indices: 
       edges: []

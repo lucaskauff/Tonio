@@ -30,6 +30,10 @@ namespace Tonio
         //RedRes
         public bool powerActivationButton;
 
+        //SecretSavingSystem
+        public bool secretSaveKey;
+        public bool secretDeleteKey1;
+
         private void Update()
         {
             anyKeyPressed = Input.anyKeyDown;
@@ -57,6 +61,9 @@ namespace Tonio
             }
             //
             powerActivationButton = Input.GetKeyDown(KeyCode.R);
+            //
+            secretSaveKey = Input.GetKeyDown(KeyCode.N);
+            secretDeleteKey1 = Input.GetKeyDown(KeyCode.K);
         }
     }
 }
