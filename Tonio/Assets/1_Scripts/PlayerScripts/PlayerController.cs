@@ -39,6 +39,8 @@ namespace Tonio
             inputManager = GameManager.Instance.inputManager;
 
             originalBoxColOffset = myCol.offset.y;
+
+            lastMove = new Vector2(0, -1);
         }
 
         private void Update()
