@@ -17,11 +17,16 @@ namespace Tonio
         //Private
         GameObject cloneProj;
         bool readyForFirstEvent = true;
-        bool readyForSecondEvent = false;
+        [HideInInspector] public bool readyForSecondEvent = false;
 
         private void Start()
         {
             StartCoroutine(FirstEvent());
+        }
+
+        public void OpenTheDoor()
+        {
+            myAnim.SetTrigger("OpenDoor");
         }
 
         void DoorIsOpen()
@@ -30,10 +35,11 @@ namespace Tonio
             {
                 cloneProj = Instantiate(thePresent, instantiator.position, thePresent.transform.rotation);
                 cloneProj.GetComponent<PresentFunctionning>().isSpawned = true;
+                readyForFirstEvent = false;
             }
             else if (readyForSecondEvent)
             {
-
+                Debug.Log("The bad guys arrive !");
             }
         }
 
@@ -45,7 +51,7 @@ namespace Tonio
         IEnumerator FirstEvent()
         {
             yield return new WaitForSeconds(waitTimeForFirstEvent);
-            myAnim.SetTrigger("OpenDoor");
+            OpenTheDoor();
         }
     }
 }

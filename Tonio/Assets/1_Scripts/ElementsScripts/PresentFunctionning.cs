@@ -6,9 +6,17 @@ namespace Tonio
 {
     public class PresentFunctionning : MonoBehaviour
     {
+        [Header("My components")]
+        [SerializeField] SpriteRenderer myRend = default;
         [SerializeField] Animator myAnim = default;
+        [SerializeField] PolygonCollider2D myTriggerCollider = default;
+
+        [SerializeField] Animator interactionButton = default;
+
         [SerializeField] Transform deliverPos = default;
         [SerializeField] float deliverSpeed = 1;
+
+        [SerializeField] GameObject theBread = default;
         
         public bool isSpawned = false;
 
@@ -26,9 +34,15 @@ namespace Tonio
 
             if (transform.position == deliverPos.position)
             {
-                //myAnim.SetTrigger("OpenPresent");
                 isSpawned = false;
+                MakeTheBreadAppear();
             }
+        }
+
+        void MakeTheBreadAppear()
+        {
+            Debug.Log("The bread !");
+            interactionButton.SetTrigger("Appear");
         }
 
         void PackageIsOpened()
