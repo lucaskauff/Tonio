@@ -24,7 +24,6 @@ namespace Tonio
         private void Start()
         {
             inputManager = GameManager.Instance.inputManager;
-            //dialogueManager = FindObjectOfType<DialogueManager>();
         }
 
         private void Update()

@@ -16,6 +16,7 @@ namespace Tonio
         [SerializeField] Transform deliverPos = default;
         [SerializeField] float deliverSpeed = 1;
 
+        [SerializeField] HouseDoorFunctionning houseDoor = default;
         [SerializeField] GameObject theBread = default;
         
         public bool isSpawned = false;
@@ -35,14 +36,15 @@ namespace Tonio
             if (transform.position == deliverPos.position)
             {
                 isSpawned = false;
-                MakeTheBreadAppear();
+                PresentIsDelivered();
             }
         }
 
-        void MakeTheBreadAppear()
+        void PresentIsDelivered()
         {
             Debug.Log("The bread !");
             interactionButton.SetTrigger("Appear");
+            houseDoor.CloseTheDoor();
         }
 
         void PackageIsOpened()
