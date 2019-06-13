@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Tonio
 {
@@ -18,11 +19,11 @@ namespace Tonio
         [SerializeField] float currentLetterSpeed = 0;
         [SerializeField] float originalLetterSpeed = 0;
         [SerializeField] Animator diaBox = default;
-        [SerializeField] GameObject passDialogueArrow = default;
+        [SerializeField] Image passDialogueArrow = default;
         [SerializeField] PlayerController playerController = default;
 
-        public GameObject nameText = default;
-        public GameObject dialogueText = default;
+        public SuperTextMesh nameText = default;
+        public SuperTextMesh dialogueText = default;
         [HideInInspector] public bool interactionDebug = false;
 
         //Private
@@ -45,11 +46,11 @@ namespace Tonio
         {
             if (isCurrentSentenceFinished)
             {
-                passDialogueArrow.SetActive(true);
+                passDialogueArrow.enabled = true;
             }
             else
             {
-                passDialogueArrow.SetActive(false);
+                passDialogueArrow.enabled = false;
             }
 
             if (playerReading && inputManager.skipDialogueKey)
@@ -103,7 +104,7 @@ namespace Tonio
 
             //Displays letter by letter
             StopAllCoroutines();
-            nameText.GetComponent<SuperTextMesh>().text = nameOfTheCurrentSpeaker;
+            nameText.text = nameOfTheCurrentSpeaker;
             StartCoroutine(TypeSentence(sentence));
         }
 
@@ -111,10 +112,10 @@ namespace Tonio
         {
             isCurrentSentenceFinished = false;
 
-            dialogueText.GetComponent<SuperTextMesh>().text = "";
+            dialogueText.text = "";
             foreach (char letter in sentence.ToCharArray())
             {
-                dialogueText.GetComponent<SuperTextMesh>().text += letter;
+                dialogueText.text += letter;
                 yield return new WaitForSeconds(currentLetterSpeed);
             }
 
