@@ -12,6 +12,7 @@ namespace Tonio
         [Header("Serializable")]
         [SerializeField] Transform instantiator = default;
         [SerializeField] float waitTimeForFirstEvent = 10;
+        [SerializeField] DialogueManager diaMan = default;
         [SerializeField] GameObject thePresent = default;
 
         //Private
@@ -19,9 +20,13 @@ namespace Tonio
         bool readyForFirstEvent = true;
         [HideInInspector] public bool readyForSecondEvent = false;
 
-        private void Start()
+        private void Update()
         {
-            StartCoroutine(FirstEvent());
+            if (diaMan.activeCodeForFollowingAction == "PresentDeliveroo")
+            {
+                StartCoroutine(FirstEvent());
+                diaMan.ResetFollowActionCode();
+            }
         }
 
         public void OpenTheDoor()

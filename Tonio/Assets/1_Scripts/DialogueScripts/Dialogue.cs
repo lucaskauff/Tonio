@@ -7,6 +7,7 @@ namespace Tonio
     [System.Serializable]
     public class Dialogue
     {
+        public string codeOfFollowingAction;
         public DialogueParts[] allDialogueParts;
     }
 

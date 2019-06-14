@@ -14,6 +14,8 @@ namespace Tonio
         public bool readyToDisplay = false;
         public bool playerReading = false;
         public bool isCurrentSentenceFinished = false;
+        public string memoryCodeForFollowingAction = null;
+        public string activeCodeForFollowingAction = null;
 
         [Header("Serializable")]
         [SerializeField] float currentLetterSpeed = 0;
@@ -21,9 +23,9 @@ namespace Tonio
         [SerializeField] Animator diaBox = default;
         [SerializeField] Image passDialogueArrow = default;
         [SerializeField] PlayerController playerController = default;
+        [SerializeField] SuperTextMesh nameText = default;
+        [SerializeField] SuperTextMesh dialogueText = default;
 
-        public SuperTextMesh nameText = default;
-        public SuperTextMesh dialogueText = default;
         [HideInInspector] public bool interactionDebug = false;
 
         //Private
@@ -128,6 +130,7 @@ namespace Tonio
             DialogueBoxPopOut();
             playerController.canMove = true;
             playerReading = false;
+            activeCodeForFollowingAction = memoryCodeForFollowingAction;
         }
 
         void DialogueBoxPopIn()
@@ -143,6 +146,12 @@ namespace Tonio
         void ResetLetterSpeed()
         {
             currentLetterSpeed = originalLetterSpeed;
+        }
+
+        public void ResetFollowActionCode()
+        {
+            memoryCodeForFollowingAction = null;
+            activeCodeForFollowingAction = null;
         }
     }
 }

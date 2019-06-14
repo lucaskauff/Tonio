@@ -6,10 +6,11 @@ namespace Tonio
 {
     public class PresentFunctionning : MonoBehaviour
     {
+        //GameManager
+        InputManager inputManager;
+
         [Header("My components")]
-        [SerializeField] SpriteRenderer myRend = default;
         [SerializeField] Animator myAnim = default;
-        [SerializeField] PolygonCollider2D myTriggerCollider = default;
 
         [SerializeField] Animator interactionButton = default;
 
@@ -20,12 +21,25 @@ namespace Tonio
         [SerializeField] GameObject theBread = default;
         
         public bool isSpawned = false;
+        public bool isDelivered = false;
+
+        private void Start()
+        {
+            inputManager = GameManager.Instance.inputManager;
+        }
 
         private void Update()
         {
             if (isSpawned)
             {
                 GoDeliver();
+            }
+            else if (isDelivered)
+            {
+                if (inputManager.interactionButton)
+                {
+                    OpenThePresent();
+                }
             }
         }
 
@@ -42,14 +56,19 @@ namespace Tonio
 
         void PresentIsDelivered()
         {
-            Debug.Log("The bread !");
+            isDelivered = true;
             interactionButton.SetTrigger("Appear");
             houseDoor.CloseTheDoor();
         }
 
+        void OpenThePresent()
+        {
+            myAnim.SetTrigger("OpenPresent");
+        }
+
         void PackageIsOpened()
         {
-            Destroy(gameObject);
+            interactionButton.SetTrigger("Disappear");
         }
     }
 }

@@ -13,13 +13,14 @@ namespace Tonio
         [SerializeField] bool onlyActivatableOnce = false;
         [SerializeField] bool triggerDialogueOnStart = false;
         [SerializeField] bool interactionButtonNeeded = false;
+        [SerializeField] bool willActionBeTriggeredAfter = false;
         [SerializeField] DialogueManager dialogueManager = default;
         [SerializeField] GameObject interactionButton = default;
         [SerializeField] Dialogue dialogue = default;
 
         //Private
-        public bool activationCheck = false;
-        public bool debugging = false;
+        bool activationCheck = false;
+        bool debugging = false;
 
         private void Start()
         {
@@ -111,6 +112,11 @@ namespace Tonio
             if (!dialogueManager.playerReading && !activationCheck)
             {
                 dialogueManager.StartDialogue(dialogue);
+
+                if (willActionBeTriggeredAfter)
+                {
+                    dialogueManager.memoryCodeForFollowingAction = dialogue.codeOfFollowingAction;
+                }
 
                 if (onlyActivatableOnce)
                 {
