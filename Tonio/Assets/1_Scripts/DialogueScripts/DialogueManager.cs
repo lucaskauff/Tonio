@@ -39,6 +39,9 @@ namespace Tonio
             namesOfSpeakers = new Queue<string>();
             sentences = new Queue<string>();
 
+            dialogueText.readDelay = originalLetterSpeed;
+            dialogueText.autoRead = true;
+
             readyToDisplay = true;
 
             ResetLetterSpeed();
@@ -97,17 +100,22 @@ namespace Tonio
             if (sentences.Count == 0)
             {
                 EndDialogue();
-
                 return;
             }
 
             string nameOfTheCurrentSpeaker = namesOfSpeakers.Dequeue();
             string sentence = sentences.Dequeue();
 
-            //Displays letter by letter
-            StopAllCoroutines();
             nameText.text = nameOfTheCurrentSpeaker;
-            StartCoroutine(TypeSentence(sentence));
+
+            //Display one shot
+            dialogueText.text = sentence;           
+            isCurrentSentenceFinished = true;
+            ResetLetterSpeed();
+
+            //Displays letter by letter
+            //StopAllCoroutines();
+            //StartCoroutine(TypeSentence(sentence));
         }
 
         IEnumerator TypeSentence(string sentence)

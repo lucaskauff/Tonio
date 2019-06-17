@@ -19,6 +19,7 @@ namespace Tonio
 
         [SerializeField] HouseDoorFunctionning houseDoor = default;
         [SerializeField] GameObject theBread = default;
+        [SerializeField] Animator specialObjectUI = default;
         
         public bool isSpawned = false;
         public bool isDelivered = false;
@@ -69,6 +70,7 @@ namespace Tonio
         void PackageIsOpened()
         {
             interactionButton.SetTrigger("Disappear");
+            specialObjectUI.SetTrigger("Wish");
         }
     }
 }
