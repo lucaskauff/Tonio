@@ -34,8 +34,6 @@ namespace Tonio
             {
                 MakeTheBaguetteAppear();
             }
-
-
         }
 
         public void MakeTheBaguetteAppear()
