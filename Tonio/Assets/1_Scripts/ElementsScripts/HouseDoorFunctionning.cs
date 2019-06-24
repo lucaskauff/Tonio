@@ -14,7 +14,8 @@ namespace Tonio
         [SerializeField] float waitTimeForFirstEvent = 10;
         [SerializeField] DialogueManager diaMan = default;
         [SerializeField] GameObject thePresent = default;
-
+        [SerializeField] float waitTimeForSecondEvent = default;
+    
         //Private
         GameObject cloneProj;
         bool readyForFirstEvent = true;
@@ -56,6 +57,12 @@ namespace Tonio
         IEnumerator FirstEvent()
         {
             yield return new WaitForSeconds(waitTimeForFirstEvent);
+            OpenTheDoor();
+        }
+
+        IEnumerator SecondEvent()
+        {
+            yield return new WaitForSeconds(waitTimeForSecondEvent);
             OpenTheDoor();
         }
     }

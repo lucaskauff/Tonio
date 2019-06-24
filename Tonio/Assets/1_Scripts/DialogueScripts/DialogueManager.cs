@@ -78,7 +78,7 @@ namespace Tonio
 
         public void StartDialogue(Dialogue dialogue)
         {
-            playerController.canMove = false;
+            //playerController.canMove = false;
 
             playerReading = true;
 
