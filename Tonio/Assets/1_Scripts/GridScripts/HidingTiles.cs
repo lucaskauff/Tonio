@@ -10,6 +10,8 @@ namespace Tonio
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("touche");
+
             if (collision.gameObject.tag == "Player")
             {
                 Debug.Log("Player is hidden.");
