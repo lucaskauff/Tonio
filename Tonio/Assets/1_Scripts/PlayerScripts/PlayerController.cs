@@ -15,7 +15,10 @@ namespace Tonio
         [SerializeField] Rigidbody2D myRb = default;
         [SerializeField] BoxCollider2D myCol = default;
 
-        [Header("Serializable")]
+        [Header("To Serialize")]
+        [SerializeField] UIManager uIManager = default;
+
+        [Header("Variables")]
         [SerializeField] float originalMoveSpeed = 1f;
         [SerializeField] float resMoveSpeed = 1f;
         [SerializeField, Range(0, 1)] float newSpeedRatio = 1f;
@@ -54,8 +57,7 @@ namespace Tonio
 
         void ResolutionPower()
         {
-            //Conditions for power activation to update ! (get infos from UIManager)
-            if (inputManager.powerActivationButton)
+            if (inputManager.powerActivationButton && uIManager.baguetteIsThere && uIManager.powerCanBeActivated)
             {
                 gameManager.resolutionSet = !gameManager.resolutionSet;
             }
