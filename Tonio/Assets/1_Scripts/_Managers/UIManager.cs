@@ -19,7 +19,7 @@ namespace Tonio
         //Private   
         [HideInInspector] public bool baguetteIsThere = false;
         [HideInInspector] public bool powerCanBeActivated = false;
-        public float cdFill = 1f; //for debug
+        public float cdFill; //for debug
         static float t = 0.0f;
 
         private void Start()
@@ -31,10 +31,14 @@ namespace Tonio
             {
                 MakeTheBaguetteAppear();
             }
+
+            cdFill = 1f;
         }
 
         private void Update()
         {
+            cooldownFeedbackFill.fillAmount = cdFill;
+
             if (gameManager.powerIsReady)
             {
                 if (!baguetteIsThere)
@@ -42,9 +46,7 @@ namespace Tonio
                     MakeTheBaguetteAppear();
                 }
                 else
-                {
-                    //cooldownFeedbackFill.fillAmount = cdFill;
-
+                {                    
                     if (powerCanBeActivated)
                     {
                         if (inputManager.powerActivationButton)
@@ -57,6 +59,16 @@ namespace Tonio
                     {
                         //cdFill = Mathf.Lerp(0, 1, t);
                         //t -= 0.5f * Time.deltaTime;
+                        if (Input.anyKeyDown)
+                        {
+                            cdFill -= 0.1f;
+                        }
+
+                        if (cdFill <= 0)
+                        {
+                            cdFill = 1;
+                            powerCanBeActivated = true;
+                        }
                     }
                 }
             }

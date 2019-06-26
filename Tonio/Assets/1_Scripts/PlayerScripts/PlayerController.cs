@@ -57,9 +57,9 @@ namespace Tonio
 
         void ResolutionPower()
         {
-            if (inputManager.powerActivationButton && uIManager.baguetteIsThere && uIManager.powerCanBeActivated)
+            if (inputManager.powerActivationButton && uIManager.baguetteIsThere &&  /*&& uIManager.powerCanBeActivated*/)
             {
-                gameManager.resolutionSet = !gameManager.resolutionSet;
+                gameManager.resolutionSet = true;
             }
         }
 
