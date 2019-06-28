@@ -12,16 +12,27 @@ namespace Tonio
         [Header("Serializable")]
         [SerializeField] Transform instantiator = default;
         [SerializeField] float waitTimeForFirstEvent = 10;
+        [SerializeField] DialogueManager diaMan = default;
         [SerializeField] GameObject thePresent = default;
-
+        [SerializeField] float waitTimeForSecondEvent = default;
+    
         //Private
         GameObject cloneProj;
         bool readyForFirstEvent = true;
-        bool readyForSecondEvent = false;
+        [HideInInspector] public bool readyForSecondEvent = false;
 
-        private void Start()
+        private void Update()
         {
-            StartCoroutine(FirstEvent());
+            if (diaMan.activeCodeForFollowingAction == "PresentDeliveroo")
+            {
+                StartCoroutine(FirstEvent());
+                diaMan.ResetFollowActionCode();
+            }
+        }
+
+        public void OpenTheDoor()
+        {
+            myAnim.SetTrigger("OpenDoor");
         }
 
         void DoorIsOpen()
@@ -30,10 +41,11 @@ namespace Tonio
             {
                 cloneProj = Instantiate(thePresent, instantiator.position, thePresent.transform.rotation);
                 cloneProj.GetComponent<PresentFunctionning>().isSpawned = true;
+                readyForFirstEvent = false;
             }
             else if (readyForSecondEvent)
             {
-
+                Debug.Log("The bad guys arrive !");
             }
         }
 
@@ -45,7 +57,13 @@ namespace Tonio
         IEnumerator FirstEvent()
         {
             yield return new WaitForSeconds(waitTimeForFirstEvent);
-            myAnim.SetTrigger("OpenDoor");
+            OpenTheDoor();
+        }
+
+        IEnumerator SecondEvent()
+        {
+            yield return new WaitForSeconds(waitTimeForSecondEvent);
+            OpenTheDoor();
         }
     }
 }

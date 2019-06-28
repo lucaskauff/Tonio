@@ -13,6 +13,7 @@ namespace Tonio
         public SceneLoader sceneLoader;
         public InputManager inputManager;
 
+        public bool powerIsReady = false;
         public bool resolutionSet = false;
         public int powerLeft = 0;
 
