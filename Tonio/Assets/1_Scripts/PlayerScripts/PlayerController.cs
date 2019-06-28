@@ -16,7 +16,7 @@ namespace Tonio
         [SerializeField] BoxCollider2D myCol = default;
 
         [Header("To Serialize")]
-        [SerializeField] UIManager uIManager = default;
+        //[SerializeField] UIManager uIManager = default;
 
         [Header("Variables")]
         [SerializeField] float originalMoveSpeed = 1f;
@@ -48,19 +48,9 @@ namespace Tonio
 
         private void Update()
         {
-            ResolutionPower();
-
             UpdateMovement();
 
             UpdateAnimations();
-        }
-
-        void ResolutionPower()
-        {
-            if (inputManager.powerActivationButton && uIManager.baguetteIsThere &&  /*&& uIManager.powerCanBeActivated*/)
-            {
-                gameManager.resolutionSet = true;
-            }
         }
 
         void UpdateMovement()

@@ -16,11 +16,16 @@ namespace Tonio
         [SerializeField] Animator cooldownFeedbackAnim = default;
         [SerializeField] Animator powerButton = default;
 
+        [Header("To Serialize")]
+        [SerializeField] float powerDecreaseSpeed = 0.0f;
+        [SerializeField] float powerDecreaseTimer = 0.0f;
+
         //Private   
         [HideInInspector] public bool baguetteIsThere = false;
         [HideInInspector] public bool powerCanBeActivated = false;
         public float cdFill; //for debug
-        static float t = 0.0f;
+
+        float originalpowerDecreaseTimer;
 
         private void Start()
         {
@@ -33,6 +38,8 @@ namespace Tonio
             }
 
             cdFill = 1f;
+
+            originalpowerDecreaseTimer = powerDecreaseTimer;
         }
 
         private void Update()
@@ -51,23 +58,25 @@ namespace Tonio
                     {
                         if (inputManager.powerActivationButton)
                         {
+                            gameManager.resolutionSet = true;
+
                             powerButton.SetTrigger("Disappear");
                             powerCanBeActivated = false;
                         }
                     }
                     else
                     {
-                        //cdFill = Mathf.Lerp(0, 1, t);
-                        //t -= 0.5f * Time.deltaTime;
-                        if (Input.anyKeyDown)
-                        {
-                            cdFill -= 0.1f;
-                        }
+                        cdFill = Mathf.Lerp(0, 1, powerDecreaseSpeed * powerDecreaseTimer);
+
+                        powerDecreaseTimer = Mathf.Clamp(powerDecreaseTimer - Time.deltaTime, 0.0f, 1.0f / powerDecreaseSpeed);
 
                         if (cdFill <= 0)
-                        {
+                        {                            
+                            gameManager.resolutionSet = false;
+
                             cdFill = 1;
-                            powerCanBeActivated = true;
+                            powerDecreaseTimer = originalpowerDecreaseTimer;
+                            powerCanBeActivated = true;                            
                         }
                     }
                 }
