@@ -20,11 +20,14 @@ namespace Tonio
         [SerializeField] float powerDecreaseSpeed = 0.0f;
         [SerializeField] float powerDecreaseTimer = 0.0f;
 
-        //Private   
+        //Public
         [HideInInspector] public bool baguetteIsThere = false;
         [HideInInspector] public bool powerCanBeActivated = false;
-        public float cdFill; //for debug
+        [HideInInspector] public bool powerHasBeenActivatedOnce = false;
+        [HideInInspector] public bool emergencyBreak = false;
 
+        //Private
+        float cdFill;
         float originalpowerDecreaseTimer;
 
         private void Start()
@@ -59,13 +62,22 @@ namespace Tonio
                         if (inputManager.powerActivationButton)
                         {
                             gameManager.resolutionSet = true;
-
-                            powerButton.SetTrigger("Disappear");
                             powerCanBeActivated = false;
+
+                            if (!powerHasBeenActivatedOnce)
+                            {
+                                powerButton.SetTrigger("Disappear");
+                                powerHasBeenActivatedOnce = true;
+                            }
                         }
                     }
                     else
                     {
+                        if (emergencyBreak)
+                        {
+                            return;
+                        }
+
                         cdFill = Mathf.Lerp(0, 1, powerDecreaseSpeed * powerDecreaseTimer);
 
                         powerDecreaseTimer = Mathf.Clamp(powerDecreaseTimer - Time.deltaTime, 0.0f, 1.0f / powerDecreaseSpeed);
