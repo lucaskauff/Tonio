@@ -11,11 +11,15 @@ namespace Tonio
 
         [Header("Serializable")]
         [SerializeField] Transform instantiator = default;
+
         [SerializeField] float waitTimeForFirstEvent = 10;
         [SerializeField] DialogueManager diaMan = default;
         [SerializeField] GameObject thePresent = default;
+
         [SerializeField] float waitTimeForSecondEvent = default;
-    
+        [SerializeField] GameObject berto = default;
+        [SerializeField] GameObject giuseppe = default;
+
         //Private
         GameObject cloneProj;
         bool readyForFirstEvent = true;
@@ -46,6 +50,9 @@ namespace Tonio
             else if (readyForSecondEvent)
             {
                 Debug.Log("The bad guys arrive !");
+
+                cloneProj = Instantiate(berto, instantiator.position, berto.transform.rotation);
+                
             }
         }
 
