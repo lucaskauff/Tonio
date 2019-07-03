@@ -6,9 +6,6 @@ namespace Tonio
 {
     public class CameraTransition : MonoBehaviour
     {
-        [Header("My components")]
-        [SerializeField] Collider2D myCol = default;
-
         [Header("To serialize")]
         [SerializeField] bool triggerOnlyOnce = false;
         [SerializeField] GameObject virtualCamPlayer = default;

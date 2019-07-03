@@ -15,11 +15,12 @@ namespace Tonio
         [Header("To serialize")]
         [SerializeField] bool isBerto = true;
         [SerializeField] float moveSpeed = 1;
-        [SerializeField] Transform[] movePoints;
+        [SerializeField] Transform[] movePoints = null;
 
         //Public
+        [HideInInspector] public bool gotInfoFromDiaMan = false;
         [HideInInspector] public bool shouldArrive = false;
-
+        
         //Private
         bool shouldGo = false;
         bool isArrivedInHouse = false;
@@ -68,8 +69,11 @@ namespace Tonio
             {
                 myAnim.SetTrigger("WalkLeft");
 
-                shouldArrive = false;
-                isArrivedInHouse = true;
+                if (transform.position == movePoints[target].position)
+                {
+                    shouldArrive = false;
+                    isArrivedInHouse = true;
+                }
             }
         }
 
@@ -79,12 +83,14 @@ namespace Tonio
 
             if (dialogueManager.activeCodeForFollowingAction == "BadGuysAreGone")
             {
-                dialogueManager.ResetFollowActionCode();
+                //dialogueManager.ResetFollowActionCode();                
 
                 isArrivedInHouse = false;
                 shouldGo = true;
 
                 target = 1;
+
+                gotInfoFromDiaMan = true;
             }
         }
 

@@ -49,10 +49,11 @@ namespace Tonio
             }
             else if (readyForSecondEvent)
             {
-                Debug.Log("The bad guys arrive !");
-
                 cloneProj = Instantiate(berto, instantiator.position, berto.transform.rotation);
-                
+                cloneProj.GetComponent<BadGuysBehaviour>().shouldArrive = true;
+
+                cloneProj = Instantiate(giuseppe, instantiator.position, giuseppe.transform.rotation);
+                cloneProj.GetComponent<BadGuysBehaviour>().shouldArrive = true;
             }
         }
 

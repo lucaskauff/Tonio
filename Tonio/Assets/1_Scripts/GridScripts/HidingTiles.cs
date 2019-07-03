@@ -18,6 +18,8 @@ namespace Tonio
         [SerializeField] DialogueManager dialogueManager = default;
         [SerializeField] PlayerController playerController = default;
         [SerializeField] HouseDoorFunctionning theDoor = default;
+        [SerializeField] BadGuysBehaviour berto = default;
+        [SerializeField] BadGuysBehaviour giuseppe = default;
 
         bool playerIsHidden = false;
 
@@ -34,7 +36,7 @@ namespace Tonio
                 {
                     HidingPhase();
                 }
-                else if (dialogueManager.activeCodeForFollowingAction == "BadGuysAreGone")
+                else if (dialogueManager.activeCodeForFollowingAction == "BadGuysAreGone" && berto.gotInfoFromDiaMan && giuseppe.gotInfoFromDiaMan)
                 {
                     BadGuysAreGone();
                 }
