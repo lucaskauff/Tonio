@@ -75,17 +75,63 @@ namespace Tonio
 
         void LookAroundInHouse()
         {
+            myAnim.SetTrigger("LookAround");
 
+            if (dialogueManager.activeCodeForFollowingAction == "BadGuysAreGone")
+            {
+                dialogueManager.ResetFollowActionCode();
+
+                isArrivedInHouse = false;
+                shouldGo = true;
+
+                target = 1;
+            }
         }
 
         void ExitHouse()
         {
+            MakeAMove(movePoints[target].position);
 
+            if (target == 1)
+            {
+                myAnim.SetTrigger("WalkRight");
+
+                if (transform.position == movePoints[target].position)
+                {
+                    target = 2;
+                }
+            }
+            else if (target == 2)
+            {
+                myAnim.SetTrigger("WalkSouth");
+
+                if (transform.position == movePoints[target].position)
+                {
+                    target = 3;
+                }
+            }
+            else if (target == 3)
+            {
+                if (isBerto)
+                {
+                    myAnim.SetTrigger("WalkLeft");
+                }
+                else
+                {
+                    myAnim.SetTrigger("WalkRight");
+                }
+
+                if (transform.position == movePoints[target].position)
+                {
+                    shouldGo = false;
+                    isArrivedOutside = true;
+                }
+            }
         }
 
         void LookOutsideHouse()
         {
-
+            myAnim.SetTrigger("Stay");
         }
 
         void MakeAMove(Vector3 pointWhereToGo)
