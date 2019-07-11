@@ -12,7 +12,7 @@ namespace Tonio
         {
             inputManager = GameManager.Instance.inputManager;
 
-            transform.position = ES3.Load<Vector3>("tonioPosition", Vector3.zero);
+            transform.position = ES3.Load("tonioPosition", Vector3.zero);
         }
 
         void Update()

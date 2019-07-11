@@ -91,6 +91,8 @@ namespace Tonio
                 target = 1;
 
                 gotInfoFromDiaMan = true;
+
+                Debug.Log("Bad guys are going.");
             }
         }
 

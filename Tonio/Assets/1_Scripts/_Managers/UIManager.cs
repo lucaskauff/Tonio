@@ -24,7 +24,7 @@ namespace Tonio
         [HideInInspector] public bool baguetteIsThere = false;
         [HideInInspector] public bool powerCanBeActivated = false;
         [HideInInspector] public bool powerHasBeenActivatedOnce = false;
-        [HideInInspector] public bool emergencyBreak = false;
+        public bool emergencyBreak = false;
 
         //Private
         float cdFill;

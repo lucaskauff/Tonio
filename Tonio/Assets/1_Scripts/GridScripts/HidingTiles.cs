@@ -86,6 +86,8 @@ namespace Tonio
             playerController.canMove = true;
 
             dialogueManager.ResetFollowActionCode();
+
+            Debug.Log("Emergency break disabled.");
         }
     }
 }
